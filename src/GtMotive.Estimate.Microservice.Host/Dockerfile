@@ -33,4 +33,7 @@ RUN dotnet publish "GtMotive.Estimate.Microservice.Host.csproj" -c Release -o /a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS=http://+:80;https://+:443
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 CMD curl -f http://localhost/health || exit 1
 ENTRYPOINT ["dotnet", "GtMotive.Estimate.Microservice.Host.dll"]
