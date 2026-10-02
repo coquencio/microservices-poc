@@ -10,7 +10,7 @@ namespace GtMotive.Estimate.Microservice.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    [AllowAnonymous]
     [ExcludeFromCodeCoverage]
     public class VehiclesController(IMediator mediator) : ControllerBase
     {

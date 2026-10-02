@@ -2,6 +2,7 @@
 using Acheve.AspNetCore.TestHost.Security;
 using Acheve.TestHost;
 using GtMotive.Estimate.Microservice.Api;
+using GtMotive.Estimate.Microservice.Domain.Repositories;
 using GtMotive.Estimate.Microservice.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +45,9 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
                 .WithApiControllers();
 
             services.AddBaseInfrastructure(true);
+
+            // Avoid requiring a live MongoDB for endpoint/auth infrastructure tests.
+            services.AddScoped<IVehicleRepository, InMemoryVehicleRepository>();
         }
     }
 }

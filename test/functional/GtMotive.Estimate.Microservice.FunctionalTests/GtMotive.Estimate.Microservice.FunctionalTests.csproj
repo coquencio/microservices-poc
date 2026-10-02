@@ -23,15 +23,12 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Microsoft.Data.SqlClient" />
         <PackageReference Include="Respawn" />
+        <PackageReference Include="Moq" Version="4.16.0" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\src\GtMotive.Estimate.Microservice.Api\GtMotive.Estimate.Microservice.Api.csproj" />
         <ProjectReference Include="..\..\..\src\GtMotive.Estimate.Microservice.Infrastructure\GtMotive.Estimate.Microservice.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Specs\" />
     </ItemGroup>
 
 </Project>

@@ -8,13 +8,13 @@ using MediatR;
 
 namespace GtMotive.Estimate.Microservice.Api.Requests
 {
-    public sealed class AddVehicleRequest(string modelName, DateTime manufacturiedDate) : IRequest<IWebApiPresenter>
+    public sealed class AddVehicleRequest(string modelName, DateTime manufacturedDate) : IRequest<IWebApiPresenter>
     {
         [Required]
         public string ModelName { get; } = modelName;
 
         [Required]
-        public DateTime ManufacturedDate { get; } = manufacturiedDate;
+        public DateTime ManufacturedDate { get; } = manufacturedDate;
     }
 
     public sealed class AddVehicleRequestHandler(AddVehicleUseCase useCase, AddVehiclePresenter presenter) : IRequestHandler<AddVehicleRequest, IWebApiPresenter>
