@@ -26,32 +26,26 @@ services:
   gtmotive-api:
     image: gtmotive-estimate-api:latest
     build:
-      context: .
-      dockerfile: GtMotive.Estimate.Microservice.Host/Dockerfile
+      context: ..
+      dockerfile: src/GtMotive.Estimate.Microservice.Host/Dockerfile
       args:
         - PersonalAccessToken=${PERSONAL_ACCESS_TOKEN:-}
     container_name: gtmotive-estimate-api
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:80;https://+:443
+      ASPNETCORE_URLS: http://+:80
       MongoDb__ConnectionString: "mongodb://root:rootpassword@mongodb:27017/GtMotiveEstimate?authSource=admin"
       MongoDb__MongoDbDatabaseName: "GtMotiveEstimate"
-      ASPNETCORE_HTTPS_PORT: 443
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
-      ASPNETCORE_Kestrel__Certificates__Default__Password: ${ASPNETCORE_CERTIFICATE_PASSWORD:-password}
-    volumes:
-      - ${USERPROFILE}\.aspnet\https:/https:ro
     depends_on:
       mongodb:
         condition: service_healthy
     networks:
       - gtmotive-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
