@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rentals;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: CLSCompliant(false)]
@@ -22,6 +23,11 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore
         {
             // Register rental use cases with scoped lifetime
             services.AddScoped<RentVehicleUseCase>();
+
+            // Register vehicle use cases with scoped lifetime
+            services.AddScoped<AddVehicleUseCase>();
+            services.AddScoped<GetAllVehiclesUseCase>();
+            services.AddScoped<ReturnVehicleUseCase>();
 
             return services;
         }
