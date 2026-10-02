@@ -4,21 +4,18 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GtMotive.Estimate.Microservice.Api.DependencyInjection
 {
     /// <summary>
-    /// Extensions to register presenters and all UI-related dependencies.
+    /// Extensions to register vehicle-related dependencies.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public static class UserInterfaceExtensions
+    public static class VehiclesExtensions
     {
         /// <summary>
-        /// Adds all presenters and their dependencies to the service collection.
+        /// Adds vehicle use case dependencies to the service collection.
         /// </summary>
         /// <param name="services">Service collection.</param>
         /// <returns>The modified service collection.</returns>
-        public static IServiceCollection AddPresenters(this IServiceCollection services)
+        public static IServiceCollection AddVehicleDependencies(this IServiceCollection services)
         {
-            services.AddRentalDependencies();
-            services.AddVehicleDependencies();
-
             return services;
         }
     }
